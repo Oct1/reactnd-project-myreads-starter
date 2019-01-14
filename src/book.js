@@ -1,10 +1,12 @@
 import React, {Components} from 'react';
 
 class Book extends Components{
+	//当用户点击下拉选项框
 	handleChange = event => {
         this.props.onShelfChange(this.props.book, event.target.value);
     };
     render() {
+    	//backGroundImage存储图片地址
         const backGroundImage = this.props.book.imageLinks && this.props.book.imageLinks.thumbnail;
 
         return (
