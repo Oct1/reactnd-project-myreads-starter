@@ -90,3 +90,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+
+说明： 
+1.在项目根目录打开命令窗口
+2.输入npm install
+3.输入npm install --save react-router-dom
+4.输入npm start 启动项目

@@ -1,42 +1,50 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
-import Component from './completeBook.js';
+import React from 'react'
+import Book from './book'
 
-class ListBook extends React.Component {
-        state = {
-            bookShelves: [
-                { id: 'currentlyReading', title: 'Currently Reading' },
-                { id: 'wantToRead', title: 'Want to Read' },
-                { id: 'read', title: 'Read' }
-            ]
-        };
-        getBooksByFilterShelf = shelf => {
-            return this.props.books.filter(book => shelf.id === book.shelf);
-        };
-        render() {
-                return ( 
-                    <div className = "list-books">
-                        <div className = "list-books-title">
-                            <h1> MyReads </h1> 
-                        </div> 
-                        <div className = "list-books-content">
-                            <div> {
-                                this.state.bookShelves.map(shelf =>
-                                    <Component 
-                                    key = { shelf.id }
-                                    shelf = { shelf }
-                                    books = { this.getBooksByFilterShelf(shelf) }
-                                    updateBook = { this.props.updateBook }
-                                    />
-                                )
-                            } 
-                            </div> 
-                        </div>
-                        <div className = "open-search">
-                            <Link to = "/search" > Add book </Link> 
-                        </div > 
-                    </div>
-                );
-        } 
-} 
-export default ListBook;
+const BookList = (p) => {
+
+  return (
+
+    <div className="list-books-content">
+      <div>
+
+        <div className="bookshelf">
+          <h2 className="bookshelf-title">Currently Reading</h2>
+          <div className="bookshelf-books">
+            <ol className="books-grid">
+              {p.booksOnShelf.filter(book => book.shelf === 'currentlyReading').map(book => (
+                <Book key={book.id} book={book} onUpdateBook={p.onUpdateBook} />
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <div className="bookshelf">
+          <h2 className="bookshelf-title">Want To Read</h2>
+          <div className="bookshelf-books">
+            <ol className="books-grid">
+              {p.booksOnShelf.filter(book => book.shelf === 'wantToRead').map(book => (
+                <Book key={book.id} book={book} onUpdateBook={p.onUpdateBook} />
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <div className="bookshelf">
+          <h2 className="bookshelf-title">Read</h2>
+          <div className="bookshelf-books">
+            <ol className="books-grid">
+              {p.booksOnShelf.filter(book => book.shelf === 'read').map(book => (
+                <Book key={book.id} book={book} onUpdateBook={p.onUpdateBook} />
+              ))}
+            </ol>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  )
+}
+
+export default BookList
